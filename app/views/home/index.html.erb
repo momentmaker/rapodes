@@ -1,0 +1,10 @@
+<div id="home">
+  <h2>Generate Your Daily Ten Rap Odes</h2>
+
+  <div class="form">
+    <%= form_tag(odes_path, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search a topic" %>
+      <%= submit_tag "Search", class: "button tiny" %>
+    <% end %>
+  </div>
+</div>

@@ -11,3 +11,5 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem "rapgenius", "~> 1.0.5"
 gem 'pry-rails', :group => :development
+gem 'foundation-rails'
+gem 'quiet_assets', group: :development

@@ -1,0 +1,12 @@
+<div id="odes">
+  <div class="row" data-equalizer>
+    <% @odes.each do |ode| %>
+    <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+      <div class="panel" data-equalizer-watch>
+        <h2><%= ode[:title] %></h2>
+        <%= simple_format(ode[:lyrics]) %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
