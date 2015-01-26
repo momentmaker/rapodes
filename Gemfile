@@ -1,3 +1,4 @@
+ruby '2.0.0'
 source 'https://rubygems.org'
 
 gem 'rails', '4.1.6'
@@ -13,3 +14,4 @@ gem "rapgenius", "~> 1.0.5"
 gem 'pry-rails', :group => :development
 gem 'foundation-rails'
 gem 'quiet_assets', group: :development
+gem 'rails_12factor', group: :production
