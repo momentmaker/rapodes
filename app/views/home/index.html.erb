@@ -7,4 +7,12 @@
       <%= submit_tag "Search", class: "button tiny" %>
     <% end %>
   </div>
+
+  <h2>Add New Artist</h2>
+  <div class="form">
+    <%= form_for Artist.new do |f| %>
+      <%= f.text_field :name, placeholder: "Artist name" %>
+      <%= f.submit "Add Artist", class: "button tiny"%>
+    <% end %>
+  </div>
 </div>

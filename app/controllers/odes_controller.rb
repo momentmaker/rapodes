@@ -14,7 +14,7 @@ class OdesController < ApplicationController
 
   def fetch_topic(topic)
     @odes = []
-    odes_list = RapGenius.search(topic)
+    odes_list = RapGenius.search_by_lyrics(topic)
     11.times do
       odes_list.delete(odes_list.sample)
     end
