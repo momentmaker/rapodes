@@ -15,11 +15,15 @@ class OdesController < ApplicationController
   def fetch_topic(topic)
     @odes = []
     odes_list = RapGenius.search_by_lyrics(topic)
-    11.times do
-      odes_list.delete(odes_list.sample)
-    end
     odes_list.each do |ode|
-      @odes << RapGenius::Song.find(ode.id)
+      find_ode = RapGenius::Song.find(ode.id)
+      lyrics = find_ode.document["response"]["song"]["lyrics"]["plain"]
+      if lyrics.lines.count < 80 && lyrics.lines.first.length < 120 && lyrics.lines.last.length < 120
+        @odes << find_ode
+      end
+    end
+    while @odes.length > 9
+      @odes.delete(@odes.sample)
     end
     filter_odes
   end
