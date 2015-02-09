@@ -9,10 +9,9 @@ class ArtistsController < ApplicationController
     odes = RapGenius::search_by_artist(artist_params)
     ode = nil
     odes.each do |o|
-      if o.artist.name.downcase.include? artist_params[:name].downcase
-        ode = o
-      end
+      ode = o if o.artist.name.downcase.include? artist_params[:name].downcase
     end
+    ode = odes.first if ode == nil
     @artist = Artist.new({external_id: ode.artist.response["id"], name: ode.artist.name})
     if @artist.save
       redirect_to root_path, notice: "#{@artist.name} was added."

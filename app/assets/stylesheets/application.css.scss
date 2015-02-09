@@ -1,13 +1,30 @@
 @import "foundation_and_overrides";
+@import "multi-select";
 
 #home {
   h2 {
     text-align: center;
   }
 
+  .select-artists {
+    margin-left: 35%;
+    margin-right: 30%;
+  }
+
   .form {
     margin-left: 30%;
     margin-right: 30%;
     margin-top: 5%;
+    #search-form {
+      display: block;
+    }
   }
+}
+
+.hide {
+  display: none;
+}
+
+.block {
+  display: block;
 }

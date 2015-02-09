@@ -5,7 +5,16 @@
     <%= form_tag(odes_path, :method => "get", id: "search-form") do %>
       <%= text_field_tag :search, params[:search], placeholder: "Search a topic" %>
       <%= submit_tag "Search", class: "button tiny" %>
+      <%= check_box_tag 'check-artists' %> Search songs with artists 
     <% end %>
+  </div>
+
+  <div class="select-artists hide">
+    <select multiple="multiple" id="select-artists" name="artists[]">
+      <% Artist.all.each do |artist| %>
+        <option value="<%= artist.name %>"><%= artist.name %></option>
+      <% end %>
+    </select>
   </div>
 
   <h2>Add New Artist</h2>
