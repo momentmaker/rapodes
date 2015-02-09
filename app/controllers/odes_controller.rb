@@ -2,7 +2,14 @@ class OdesController < ApplicationController
   rescue_from RapGenius::NotFoundError, with: :not_found
 
   def index
-    if params[:search]
+    if params[:artists].length > 0
+      artists = []
+      selected = params[:artists].split(',')
+      selected.each do |name|
+        artists << Artist.find_by(name: name)
+      end
+      
+    elsif params[:search]
       @odes = fetch_topic(params[:search])
       render :index
     else

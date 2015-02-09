@@ -1,9 +1,9 @@
 $('#select-artists').multiSelect({
   keepOrder: true;
   afterSelect: (values) ->
-    debugger
+    $('#artists').val($('#artists').val() + values[0] + ',')
   afterDeselect: (values) ->
-    debugger
+    $('#artists').val($('#artists').val().replace(values[0] + ',', ''))
 })
 
 $('#check-artists').click ->

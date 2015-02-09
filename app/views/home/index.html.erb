@@ -4,8 +4,9 @@
   <div class="form">
     <%= form_tag(odes_path, :method => "get", id: "search-form") do %>
       <%= text_field_tag :search, params[:search], placeholder: "Search a topic" %>
+      <%= hidden_field_tag :artists %>
       <%= submit_tag "Search", class: "button tiny" %>
-      <%= check_box_tag 'check-artists' %> Search songs with artists 
+      <%= check_box_tag 'check-artists' %> Search songs with artists
     <% end %>
   </div>
 
