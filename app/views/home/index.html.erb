@@ -6,7 +6,9 @@
       <%= text_field_tag :search, params[:search], placeholder: "Search a topic" %>
       <%= hidden_field_tag :artists %>
       <%= submit_tag "Search", class: "button tiny" %>
+      <span class="artist-checkbox">
       <%= check_box_tag 'check-artists' %> Search songs with artists
+      </span>
     <% end %>
   </div>
 

@@ -4,13 +4,17 @@ class OdesController < ApplicationController
   def index
     if params[:artists].length > 0
       artists = []
+      lyrics = []
       selected = params[:artists].split(',')
       selected.each do |name|
         artists << Artist.find_by(name: name)
       end
-      
+      artists.each do |artist|
+        lyrics << fetch_lyrics(artist)
+      end
+      @odes = fetch_topic(params[:search], lyrics)
     elsif params[:search]
-      @odes = fetch_topic(params[:search])
+      @odes = fetch_topic(params[:search], lyrics)
       render :index
     else
       redirect_to root_path, flash[:alert] = "Error. Try again."
@@ -19,16 +23,40 @@ class OdesController < ApplicationController
 
   private
 
-  def fetch_topic(topic)
+  def fetch_lyrics(artist)
+    lyrics = []
+    artist.odes.each do |ode|
+      lyrics << ode.lyrics if ode.lyrics
+    end
+    lyrics
+  end
+
+  def fetch_topic(topic, lyrics)
     @odes = []
-    odes_list = RapGenius.search_by_lyrics(topic)
-    11.times do
-      odes_list.delete(odes_list.sample)
+    if lyrics.any?
+      lyrics.each do |lyric|
+        unless lyric.is_a? Array
+          if lyric.downcase.include? topic.downcase
+            @odes << lyric
+          end
+        end
+      end
+      trim_odes_list(@odes)
+    else
+      odes_list = RapGenius.search_by_lyrics(topic)
+      trim_odes_list(odes_list)
+      odes_list.each do |ode|
+        @odes << RapGenius::Song.find(ode.id)
+      end
+      filter_odes
     end
-    odes_list.each do |ode|
-      @odes << RapGenius::Song.find(ode.id)
+  end
+
+  def trim_odes_list(list)
+    while list.length > 9
+      list.delete(list.sample)
     end
-    filter_odes
+    list
   end
 
   def filter_odes

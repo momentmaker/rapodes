@@ -19,14 +19,13 @@ ActiveRecord::Schema.define(version: 20150201210903) do
   create_table "artists", force: true do |t|
     t.integer  "external_id"
     t.string   "name"
-    t.string   "song_artist_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "ode_artists", force: true do |t|
-    t.string   "ode_id"
-    t.string   "artist_id"
+    t.integer  "ode_id"
+    t.integer  "artist_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -34,8 +33,7 @@ ActiveRecord::Schema.define(version: 20150201210903) do
   create_table "odes", force: true do |t|
     t.integer  "external_id"
     t.string   "title"
-    t.string   "lyrics"
-    t.string   "song_artist_id"
+    t.text     "lyrics"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
